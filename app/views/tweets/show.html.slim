@@ -1,0 +1,21 @@
+.center-flex-container.flex-item
+  .tweets.pt-3
+    .user-pics
+      = image_pack_tag "media/images/profile.jpg"
+    .brand-black.d-flex.flex-column
+      .user-names.d-flex.align-items-center
+        p.full-name Olivia Brent
+        p.user-name @iamolivia
+        p.time = time_ago_in_words(@tweet.created_at.localtime)
+      .user-content
+        p = @tweet.post
+      .content-icons
+        .blue
+          i.far.fa-comment.me-2.blue
+          span = humanize_number(109)
+        .red
+          i.far.fa-heart.me-2.red
+          span = humanize_number(1600)
+
+.right-flex-container.flex-item
+  = render "user_list"
