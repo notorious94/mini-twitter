@@ -13,6 +13,9 @@ class TweetsController < ApplicationController
     @tweet = Tweet.create(tweet_params)
     if @tweet.save
       redirect_to tweets_path
+    else
+      flash[:alert] = "Please review the following problems"
+      render :edit
     end
   end
 
@@ -20,6 +23,9 @@ class TweetsController < ApplicationController
   end
 
   def update
+    if @tweet.update(tweet_params)
+      redirect_to tweets_path
+    end
   end
 
   def show
