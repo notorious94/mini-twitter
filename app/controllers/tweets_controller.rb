@@ -1,4 +1,5 @@
 class TweetsController < ApplicationController
+  before_action :authenticate_user!, except: %w[index show]
   before_action :set_tweet, only: %w[edit update destroy show]
 
   def index

@@ -1,10 +1,12 @@
+- unless user_signed_in?
+  = render 'tweets/sidebar'
 .center-flex-container.flex-item
   .home
     h1 Edit
   .post-tweet
     = simple_form_for @tweet, html: { class: 'form' } do |f|
       .form-group-1
-        = image_pack_tag "media/images/profile.jpg"
+        = image_pack_tag "media/images/profile.png"
         = f.text_field :post,
                 required: true,
                 autocomplete: 'off',
