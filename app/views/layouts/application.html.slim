@@ -8,35 +8,13 @@ html
     = csp_meta_tag
     script src="https://kit.fontawesome.com/78910222b2.js" crossorigin="anonymous"
     link rel="stylesheet" href= "https://fonts.googleapis.com/css?family=Montserrat:400,500|Poppins:400,500,600,700|Roboto:400,500"
-    link rel="stylesheet" href="https://cdn.materialdesignicons.com/4.4.95/css/materialdesignicons.min.css"
     link rel='stylesheet' href="https://fonts.googleapis.com/css?family=Raleway:100,300,400,500,600,700"
+    link rel="stylesheet" href="https://cdn.materialdesignicons.com/4.4.95/css/materialdesignicons.min.css"
     link rel='stylesheet' href="https://cdn.jsdelivr.net/npm/@mdi/font@6.5.95/css/materialdesignicons.min.css"
     = stylesheet_pack_tag 'application', media: 'all'
     = javascript_pack_tag 'application'
   body.main-flex-container
-    = render "sidebar"
-    / ToDo: Will be activated after Devise gem installation
-    / - if user_signed_in?
-    /   .wrapper
-    /     - if current_user.active?
-    /       = render 'sidebar'
-    /     div class="page-wrapper #{'pl-0' unless current_user.active?}"
-    /       = render 'navbar'
-    /       .content-wrapper
-    /         .content.p-2
-    /           .container-fluid.auto-hide#error-messages
-    /             .col-md-12
-    /               - flash.each do |type, message|
-    /                 div class="alert pop-alert #{bootstrap_class_for(type)} mb-0"
-    /                   button.close.ml-2.mt-1 data-dismiss='alert' ×
-    /                   = message
-    /           - if current_user.active? && !controller_name.eql?('homes')
-    /             = render 'breadcrumb'
-    /           = yield
-    /       = render 'footer'
-    / - else
+    - if user_signed_in?
+      = render "layouts/sidebar"
     = yield
-
-    // TODO: This cdn should be removed after find a way of exposing JS outside pack folder
-
     script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"

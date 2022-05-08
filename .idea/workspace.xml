@@ -2,18 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="87ee6919-5b2e-4465-a909-988d623a22ba" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/b29c0c04-cfb2-457d-9d19-04e48ae79c4b.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/b29c0c04-cfb2-457d-9d19-04e48ae79c4b.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/mini-twitter.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/mini-twitter.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/assets/images/cover_photo.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/assets/images/profile.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Gemfile" beforeDir="false" afterPath="$PROJECT_DIR$/Gemfile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Gemfile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Gemfile.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/assets/images/profile.jpg" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/app/assets/packs/application.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/assets/packs/application.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/assets/src/tweets.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/assets/src/tweets.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/tweets_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/tweets_controller.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/application/_sidebar.html.slim" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/application/_sidebar.html.slim" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/application_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/application_controller.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/user.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/user.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/devise/registrations/new.html.slim" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/devise/registrations/new.html.slim" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/layouts/_sidebar.html.slim" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/layouts/_sidebar.html.slim" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/tweets/_sidebar.html.slim" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/tweets/_sidebar.html.slim" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/tweets/_tweet_list.html.slim" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/tweets/_tweet_list.html.slim" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/views/tweets/_user_list.html.slim" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/tweets/_user_list.html.slim" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/views/tweets/edit.html.slim" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/tweets/edit.html.slim" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/views/tweets/index.html.slim" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/tweets/index.html.slim" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/webpack/environment.js" beforeDir="false" afterPath="$PROJECT_DIR$/config/webpack/environment.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,12 +43,12 @@
               <option name="branches">
                 <list>
                   <RecentBranch>
-                    <option name="branchName" value="notorious94/ui-and-tweet-module-setup" />
-                    <option name="lastUsedInstant" value="1651790497" />
+                    <option name="branchName" value="notorious94/user-authentication" />
+                    <option name="lastUsedInstant" value="1651935111" />
                   </RecentBranch>
                   <RecentBranch>
-                    <option name="branchName" value="notorious94/ui-integration" />
-                    <option name="lastUsedInstant" value="1651790346" />
+                    <option name="branchName" value="notorious94/ui-and-tweet-module-setup" />
+                    <option name="lastUsedInstant" value="1651790497" />
                   </RecentBranch>
                 </list>
               </option>
@@ -73,24 +77,31 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Ruby.ViewRefParam.DefaultExtension&quot;: &quot;html.slim&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/istiad/Desktop/mini-twitter&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;yarn&quot;,
-    &quot;ruby.rails.projectView.checked&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Ruby.ViewRefParam.DefaultExtension": "html.slim",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "/home/istiad/Desktop/mini-twitter",
+    "nodejs_package_manager_path": "yarn",
+    "ruby.rails.projectView.checked": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;mysql&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "mysql"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/views/tweets" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/assets/src" />
+      <recent name="$PROJECT_DIR$/app/assets/packs" />
+      <recent name="$PROJECT_DIR$/app/views/layouts" />
+      <recent name="$PROJECT_DIR$/app/controllers" />
       <recent name="$PROJECT_DIR$/app/views/application" />
     </key>
   </component>
@@ -219,7 +230,9 @@
       <workItem from="1651692602309" duration="12017000" />
       <workItem from="1651782088059" duration="8883000" />
       <workItem from="1651791012979" duration="1361000" />
-      <workItem from="1651877046556" duration="1683000" />
+      <workItem from="1651877046556" duration="10958000" />
+      <workItem from="1651955578995" duration="6359000" />
+      <workItem from="1652039912840" duration="2921000" />
     </task>
     <servers />
   </component>
@@ -237,7 +250,21 @@
       </map>
     </option>
   </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="ruby-line">
+          <url>file://$PROJECT_DIR$/app/controllers/tweets_controller.rb</url>
+          <line>31</line>
+          <properties myBlockOrdinal="-1">
+            <option name="block-ordinal" value="-1" />
+          </properties>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/mini_twitter@Development__mini_twitter.rcov" NAME="Development: mini-twitter Coverage Results" MODIFIED="1651925859489" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="mini-twitter" />
+    <SUITE FILE_PATH="coverage/mini_twitter@Development__mini_twitter.rcov" NAME="Development: mini-twitter Coverage Results" MODIFIED="1652042097636" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="mini-twitter" />
   </component>
 </project>

@@ -1,21 +1,24 @@
+- unless user_signed_in?
+  = render 'tweets/sidebar'
 .center-flex-container.flex-item
   .home
     h1 Home
-  .post-tweet
-    = simple_form_for @tweet, html: { class: 'form' } do |f|
-      .form-group-1
-        = image_pack_tag "media/images/profile.jpg"
-        = f.text_field :post,
-                required: true,
-                autocomplete: 'off',
-                placeholder: "What's happening?",
-                id: 'tweet-box'
-      .form-group-2
-        .post-icons
-          i.mdi.mdi-image
-          span
-            = button_tag type: 'submit', class: 'button btn text-white'
-              span Tweet
+  - if user_signed_in?
+    .post-tweet
+      = simple_form_for @tweet, html: { class: 'form' } do |f|
+        .form-group-1
+          = image_tag current_user.displayed_profile_image
+          = f.text_field :post,
+                  required: true,
+                  autocomplete: 'off',
+                  placeholder: "What's happening?",
+                  id: 'tweet-box'
+        .form-group-2
+          .post-icons
+            i.mdi.mdi-image
+            span
+              = button_tag type: 'submit', class: 'button btn text-white'
+                span Tweet
 
   = render "tweet_list"
 
