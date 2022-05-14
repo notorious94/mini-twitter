@@ -29,6 +29,7 @@
         = f.text_field :name,
                 required: true,
                 placeholder: 'Your Name',
+                autocomplete: 'off',
                 class: 'form-control input-sm form-control-sm'
 
       .form-group.col-12.mb-2
@@ -37,6 +38,7 @@
         = f.text_field :username,
                 required: true,
                 placeholder: 'User Name',
+                autocomplete: 'off',
                 class: 'form-control input-sm form-control-sm'
 
       .form-group.col-12.mb-2
@@ -45,6 +47,7 @@
         = f.email_field :email,
                 required: true,
                 placeholder: 'Email',
+                autocomplete: 'off',
                 class: 'form-control input-sm form-control-sm'
 
       .form-group.col-12.mb-2
@@ -52,7 +55,6 @@
         span.req-field.ms-1.text-danger title="required" *
         = f.date_field :dob,
                 required: true,
-                placeholder: 'Date of Birth',
                 class: 'form-control input-sm form-control-sm'
 
       .form-group.col-12.mb-2
@@ -65,10 +67,8 @@
 
       .form-group.col-12.mb-2
         label Profile Image
-        span.req-field.ms-1.text-danger title="required" *
         = f.file_field :profile_image,
                 accept: ".jpeg, .jpg, .png",
-                required: true,
                 class: 'form-control input-sm form-control-sm'
 
       .form-group.col-12.mb-2

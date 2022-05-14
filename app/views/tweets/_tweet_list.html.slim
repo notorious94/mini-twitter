@@ -1,18 +1,73 @@
-- @tweets.each do |tweet|
+- tweets.each do |tweet|
   .tweets
     .user-pics
-      = image_pack_tag "media/images/profile.png"
+      = image_tag tweet.creator.displayed_profile_image,
+              class: 'border border-secondary rounded-image-lg'
     .brand-black.d-flex.flex-column
-      .user-names.d-flex.align-items-center
-        p.full-name Olivia Brent
-        p.user-name @iamolivia
+
+      / Creator Details
+      .user-names.d-flex.align-items-center.justify-content-between
+        p.full-name.color-brand = tweet.creator.name
+        p.user-name = tweet.creator.username
         p.time = time_ago_in_words(tweet.created_at.localtime)
+
+        .dropdown [style="margin-left: 200px;"]
+          #tweet-menu.btn aria-expanded="false" data-bs-toggle="dropdown"
+            i.mdi.mdi-dots-vertical
+          ul.dropdown-menu aria-labelledby="tweet-menu"
+            li
+              a.dropdown-item href="#"  Action
+            li
+              a.dropdown-item href="#"  Another action
+            li
+              a.dropdown-item href="#"  Something else here
+
+
       .user-content
         a.text-decoration-none.text-dark href="#{tweet_path(tweet)}" = tweet.post
-      .content-icons
+
+      / Reaction Details
+
+      .d-flex.justify-content-around.align-items-center.content-icons.mb-1
+        div
+          - if user_signed_in? and current_user.liked(tweet)
+            i.mdi.mdi-heart.mdi-18px.me-2.like-icon.text-danger data-tweet-id="#{tweet.id}" data-like-state="true"
+            span.red.like-count = humanize_number(tweet.total_likes)
+          - else
+            i.mdi.mdi-heart-outline.mdi-18px.me-2.like-icon.text-danger data-tweet-id="#{tweet.id}" data-like-state="false"
+            span.red.like-count = humanize_number(tweet.total_likes)
         .blue
-          i.far.fa-comment.me-2.blue
-          span = humanize_number(109)
-        .red
-          i.far.fa-heart.me-2.red
-          span = humanize_number(1600)
+          a.mdi.mdi-comment-outline.color-brand.mdi-18px.me-2.text-decoration-none href="##{tweet.id}-comment"
+          span.blue id="#{tweet.id}-comment-count" = humanize_number(tweet.total_comments)
+
+  / Comment Box
+  .d-flex.flex-column.border-top.border-bottom.bg-light-grey
+    - if user_signed_in?
+      .d-flex.justify-content-start.align-items-center.px-3.py-2
+        = image_tag current_user.displayed_profile_image,
+                class: 'rounded-image-sm border border-secondary'
+        .d-flex.flex-column.p-1.w-100.ms-2
+          = simple_form_for Comment.new, html: { class: 'form' } do |f|
+            = f.text_field :body,
+                    autocomplete: 'off',
+                    class: 'px-2 form-control input-sm form-control-sm rounded-pill create-comment',
+                    data: { tweet_id: tweet.id, user_id: current_user.id },
+                    placeholder: "Write a comment..",
+                    id: "#{tweet.id}-comment"
+            p.small-text Press Enter to post
+
+    / Comment Section
+    div id="#{tweet.id}-comment-section"
+      - tweet.comments.reverse.first(4).each do |c|
+        .d-flex.justify-content-start.align-items-center.px-3
+          = image_tag c.author.displayed_profile_image,
+                  class: 'rounded-image-sm border border-secondary'
+          .d-flex.flex-column.w-100.ms-2
+            .d-flex.justify-content-start.align-items-center.lh-1
+              p.small-text.fw-bold.color-brand = c.author.name
+              p.small-text.time = time_ago_in_words(c.created_at.localtime)
+            p.small.text-wrap.lh-1 = c.body
+    - if tweet.total_comments > 4
+      a.small.text-decoration-underline.text-center.color-brand href="#{tweet_path(tweet)}" = "Show more"
+
+= render "shared/comment_template"

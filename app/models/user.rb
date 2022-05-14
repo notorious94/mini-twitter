@@ -1,9 +1,17 @@
 class User < ApplicationRecord
+  has_many :tweets, class_name: 'Tweet', foreign_key: :creator_id, dependent: :destroy_async
+  has_many :likes, dependent: :destroy
+  has_many :liked_tweets, through: :likes, source: :tweet
+  has_many :comments, dependent: :destroy
+  has_many :commented_tweets, through: :likes, source: :tweet
+
+  has_one_attached :profile_image
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
          :trackable
 
-  has_one_attached :profile_image
+
 
   validates :profile_image,
             content_type: %w[image/jpg image/jpeg image/png],
@@ -29,6 +37,18 @@ class User < ApplicationRecord
     Female: FEMALE,
     Other: OTHER
   }
+
+  def liked(tweet)
+    Like.find_by_user_id_and_tweet_id(self.id, tweet.id).present?
+  end
+
+  def get_profile_image_path
+    if profile_image.attached?
+      Rails.application.routes.url_helpers.rails_blob_url(profile_image.blob, only_path: true)
+    else
+      ActionController::Base.helpers.asset_pack_path('media/images/profile.png')
+    end
+  end
 
   def displayed_profile_image(version='original')
     if profile_image.attached?

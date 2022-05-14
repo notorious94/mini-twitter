@@ -1,11 +1,11 @@
 - unless user_signed_in?
   = render 'tweets/sidebar'
 .center-flex-container.flex-item
-  .home
+  .page-title
     h1 Home
   - if user_signed_in?
-    .post-tweet
-      = simple_form_for @tweet, html: { class: 'form' } do |f|
+    .post-tweet.border-bottom
+      = simple_form_for current_user.tweets.new, html: { class: 'form' } do |f|
         .form-group-1
           = image_tag current_user.displayed_profile_image
           = f.text_field :post,
@@ -19,8 +19,15 @@
             span
               = button_tag type: 'submit', class: 'button btn text-white'
                 span Tweet
-
-  = render "tweet_list"
+  nav
+    #nav-tab.nav.nav-tabs role="tablist"
+      #nav-home-tab.nav-link.active aria-controls="nav-home" aria-selected="true" data-bs-target="#nav-home" data-bs-toggle="tab" role="tab" type="button"  Home
+      #nav-latest-tab.nav-link aria-controls="nav-latest" aria-selected="false" data-bs-target="#nav-latest" data-bs-toggle="tab" role="tab" type="button"  Latest
+  #nav-tabContent.tab-content
+    #nav-home.tab-pane.fade.show.active aria-labelledby="nav-home-tab" role="tabpanel"
+      = render "tweet_list", tweets: @tweets
+    #nav-latest.tab-pane.fade aria-labelledby="nav-latest-tab" role="tabpanel"
+      = render "tweet_list", tweets: @tweets
 
 .right-flex-container.flex-item
   = render "user_list"
