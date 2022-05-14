@@ -50,6 +50,7 @@ ul {
 .center-flex-container {
   flex: 3 0 45%;
   background: white;
+  border-right: 1px solid rgb(230, 236, 240);
 }
 
 .right-flex-container {
@@ -64,7 +65,6 @@ ul {
   flex-flow: column nowrap;
   align-items: center;
 }
-
 
 /* Left Navigation */
 
@@ -172,7 +172,7 @@ ul {
 
 
 /* Main Container */
-.home {
+.page-title {
   display: flex;
   justify-content: space-between;
   position: sticky;
@@ -184,12 +184,12 @@ ul {
 }
 
 /* home panel */
-.home h1 {
+.page-title h1 {
   font-size: 1.2rem;
   font-weight: 800;
 }
 
-.home i {
+.page-title i {
   font-size: 1.4rem;
   color: rgba(29, 161, 242, 1.00);
   background: #fff;
@@ -197,7 +197,7 @@ ul {
   border-radius: 50%
 }
 
-.home i:hover {
+.page-title i:hover {
   background: rgba(29, 161, 242, 0.1);
   padding: 0.5rem;
   border-radius: 50%;
@@ -207,7 +207,6 @@ ul {
 /* Create Tweet box */
 .post-tweet {
   background: #fff;
-  border-bottom: 10px solid rgb(230, 236, 240);
 }
 
 .form-group-1 {
@@ -352,15 +351,10 @@ ul {
   width: 100%;
   line-height: 1.75rem;
   padding-top: 0.5rem;
-  border-bottom: 1px solid rgb(230, 236, 240);
 }
 
 .tweets:hover {
   background: rgb(245, 248, 250);
-}
-
-.full-name:hover {
-  text-decoration: underline;
 }
 
 .tweet-content img {
@@ -408,15 +402,10 @@ ul {
 }
 
 .content-icons {
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: space-between;
-  align-items: flex-start;
-  padding: 1rem 4rem 1rem 0;
 }
 
 .content-icons i {
-  color: rgb(101, 119, 134);
+  color: rgba(0, 0, 0, 0.55);
   font-size: 1rem;
   cursor: pointer;
 
@@ -424,14 +413,6 @@ ul {
 
 .content-icons i:last-child {
   font-size: 14px;
-}
-
-.content-icons .blue:hover {
-  color: rgba(29, 161, 242, 1.00);
-}
-
-.content-icons .green:hover {
-  color: rgb(23 191 99);
 }
 
 .content-icons .red:hover {
@@ -448,8 +429,26 @@ ul {
   font-weight: 1000 !important;
 }
 
-.rounded-image {
-  width: 50px;
-  height: 50px;
+.text-small {
+  font-size: 15px;
+}
+
+.border-brand {
+  border-color: #1da1f2 !important;
+}
+
+.bg-light-grey {
+  background: rgb(245, 248, 250);
+}
+
+.rounded-image-sm {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+}
+
+.rounded-image-lg {
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
 }

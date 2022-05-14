@@ -1,5 +1,5 @@
-.left-flex-container.mt-0.bg-white.d-flex.justify-content-between.flex-column.vh-100.px-4.py-2.sticky-top
-  a.text-decoration-none.d-flex.align-items-center.mx-auto.text-center href="#{tweets_path}"
+.left-flex-container.mt-0.bg-white.d-flex.justify-content-start.flex-column.vh-100.px-4.py-2.sticky-top
+  a.text-decoration-none.d-flex.align-items-center.mx-auto.text-center href="#{root_path}"
     i.mdi.mdi-twitter.fs-1.color-brand
     span.fs-2.color-brand.bold-heading Twitter
   - if user_signed_in?
@@ -28,15 +28,15 @@
       a.text-decoration-none.mb-2 href="#{new_user_session_path}" Sign In
       a.text-decoration-none.bg-light.color-brand href="#{new_user_registration_path}" Sign Up
 
-  .nav-links.align-self-start.d-flex.justify-content-start
-    ul
-      li.nav-items.mx-auto
-        a.text-decoration-none  href="#{tweets_path}"
-          i.mdi.mdi-home.fs-4
-          span.fs-5 Home
-      li.nav-items.mx-auto
-        a.text-decoration-none href="#{tweets_path}"
-          i.mdi.mdi-earth.fs-4
-          span.fs-5 Latest
 
-
+/   ToDo: Needed for later use
+/ .nav-links.align-self-start.d-flex.justify-content-start
+/   ul
+/     li.nav-items.mx-auto
+/       a.text-decoration-none  href="#{tweets_path}"
+/         i.mdi.mdi-home.fs-4
+/         span.fs-5 Home
+/     li.nav-items.mx-auto
+/       a.text-decoration-none href="#{tweets_path}"
+/         i.mdi.mdi-earth.fs-4
+/         span.fs-5 Latest
