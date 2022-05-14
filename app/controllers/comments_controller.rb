@@ -23,7 +23,7 @@ class CommentsController < ActionController::Base
 
   def create_tweet_comment
     tweet = Tweet.find(params[:tweet_id])
-    comment = ''
+    comment = Comment.new
     ActiveRecord::Base.transaction do
       comment = Comment.create(tweet_id: params[:tweet_id],
                                user_id: params[:user_id],

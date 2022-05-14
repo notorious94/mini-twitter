@@ -16,7 +16,6 @@ $(document).ready(function () {
                         "comment": $(this).val()
                     },
                     success: function (data) {
-                        console.log(data.total_comments);
                         let content = $('[data-role="comment-template"]').first().clone(true, true);
                         content.find('[data-role="comment-creator-photo"]').attr(
                             "src",
