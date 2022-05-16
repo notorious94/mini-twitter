@@ -1,0 +1,12 @@
+- tweet.comments.reverse.first(4).each do |comment|
+  .d-flex.justify-content-start.align-items-center.px-3
+    = image_tag comment.author.displayed_profile_image,
+            class: 'rounded-image-sm border border-secondary'
+    .d-flex.flex-column.w-100.ms-2
+      .d-flex.justify-content-start.align-items-center.lh-1
+        a.small.fw-bold.color-brand.faded-focus.text-decoration-none  href="#{user_path(comment.author)}"= comment.author.name
+        p.small-text.time = time_ago_in_words(comment.created_at.localtime)
+      p.small.text-wrap.lh-1 = auto_link(comment.body, html: { target: '_blank' })
+- if tweet.comments.count > 4
+  .text-center.mb-2
+    a.color-brand.text-decoration-none.small href="#{tweet_path(tweet)}" Show More

@@ -1,5 +1,5 @@
 class TweetsController < ApplicationController
-  before_action :authenticate_user!, except: %w[index show]
+  before_action :authenticate_user!, except: %w[index]
   before_action :set_tweet, only: %w[edit update destroy show]
 
   include ActionView::Helpers::NumberHelper
@@ -8,26 +8,9 @@ class TweetsController < ApplicationController
     @tweets = Tweet.all.order(id: :desc)
   end
 
-  def like_tweet
-    tweet = Tweet.find(params[:tweet_id])
-    ActiveRecord::Base.transaction do
-      unless Like.find_by(tweet_id: tweet.id, user_id: current_user.id).present?
-        Like.create(tweet_id: tweet.id, user_id: current_user.id)
-      end
-      tweet.update_total_like_count
-    end
-    like_count = number_to_human(tweet.total_likes, format: '%n%u', precision: 2, units: { thousand: 'K', million: 'M', billion: 'B' })
-    render json: like_count, adapter: nil
-  end
-
-  def unlike_tweet
-    tweet = Tweet.find(params[:tweet_id])
-    ActiveRecord::Base.transaction do
-      Like.find_by(tweet_id: tweet.id, user_id: current_user.id).destroy
-      tweet.update_total_like_count
-    end
-    like_count = number_to_human(tweet.total_likes, format: '%n%u', precision: 2, units: { thousand: 'K', million: 'M', billion: 'B' })
-    render json: like_count, adapter: nil
+  def latest_tweets
+    following_user_ids = current_user.following.pluck(:id)
+    @tweets = Tweet.where(creator_id: following_user_ids).order(id: :desc)
   end
 
   def new
@@ -48,7 +31,7 @@ class TweetsController < ApplicationController
 
   def update
     if @tweet.update(tweet_params)
-      redirect_to tweets_path
+      redirect_to tweet_path(@tweet)
     end
   end
 

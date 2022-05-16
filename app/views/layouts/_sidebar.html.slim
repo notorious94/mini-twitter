@@ -1,19 +1,20 @@
-.left-flex-container.mt-0.bg-white.d-flex.justify-content-start.flex-column.vh-100.px-4.py-2.sticky-top
+.left-flex-container.mt-0.bg-white.d-flex.justify-content-start.flex-column.vh-100.px-4.py-2.sticky-top#sidebar
   a.text-decoration-none.d-flex.align-items-center.mx-auto.text-center href="#{root_path}"
     i.mdi.mdi-twitter.fs-1.color-brand
-    span.fs-2.color-brand.bold-heading Twitter
+    span.fs-2.color-brand.bold-heading Mini Twitter
+
   - if user_signed_in?
+
     .profile-box
       = image_tag current_user.displayed_profile_image
       .profile-link
-        p.fw-bold.fs-6 = current_user.name
-        p.user-name = current_user.username
+        p.fw-bold.fs-6.color-brand  = current_user.name
+        p.small = current_user.formatted_username
       .dropdown.mb-6
         #user-menu.dropdown-toggle aria-expanded="false" data-bs-toggle="dropdown"
         ul.dropdown-menu aria-labelledby="user-menu"
           li
-            = link_to '#',
-                    method: :delete,
+            = link_to user_path(current_user),
                     class: 'text-decoration-none dropdown-item'
               i.mdi.mdi-account.text-brand.me-2
               span My Profile

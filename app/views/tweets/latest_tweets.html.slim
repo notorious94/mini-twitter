@@ -1,0 +1,13 @@
+.center-flex-container.flex-item
+  .page-title
+    div.d-flex.align-items-center
+      i.mdi.mdi-earth.fs-2.me-1
+      span.fs-4.nav-text Latest
+    = link_to tweets_path,
+            class: 'fs-2 color-brand me-2'
+      i.mdi.mdi-home-circle title="Home"
+
+  = render "tweet_list", tweets: @tweets
+
+.right-flex-container.flex-item
+  = render "users/people_to_follow"

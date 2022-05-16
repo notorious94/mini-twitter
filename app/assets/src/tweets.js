@@ -1,7 +1,8 @@
 $(document).ready(function () {
-    const tweet_box = $('#tweet-box');
-    if(tweet_box.length){
-        tweet_box.keyup(function(){
-        })
-    }
+    document.getElementById('attachment-icon').addEventListener('click',
+        function() {
+            document.getElementById('file-field').click();
+        },
+        false
+    );
 });

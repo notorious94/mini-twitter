@@ -31,6 +31,7 @@ gem 'bootsnap', '>= 1.4.4', require: false
 gem 'breadcrumbs_on_rails'
 gem 'devise'
 gem 'dotenv-rails'
+gem 'rails_autolink', '~> 1.1', '>= 1.1.6'
 gem 'simple_form'
 gem 'slim'
 gem 'slim-rails'

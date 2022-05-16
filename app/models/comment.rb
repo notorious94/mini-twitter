@@ -4,6 +4,8 @@ class Comment < ApplicationRecord
   belongs_to :author, class_name: 'User', foreign_key: :user_id
   belongs_to :tweet
 
+  validates :tweet_id, :user_id, presence: true
+
   def as_json(options)
     super(options).merge(author_image: self.author.get_profile_image_path,
                          author_name: self.author.name,

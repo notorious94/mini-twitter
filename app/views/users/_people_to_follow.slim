@@ -1,0 +1,21 @@
+- if user_signed_in?
+  .trends#people-to-follow
+    h5.bold-heading.m-3 Who to follow
+    - current_user.suggested_followers.first(10).each do |user|
+      = simple_form_for current_user.active_relationships.new, html: { class: 'form' }, remote: true do |f|
+        = f.hidden_field :followed_id, value: user.id
+        .nav-list.d-flex.justify-content-between.align-items-center.p-2
+          .user-info.d-flex.justify-content-between.align-items-center
+            .user-image
+              = image_tag user.displayed_profile_image,
+                      class: 'rounded-image-lg'
+            .name-info.ms-2
+              a.fs-6.fw-bold.text-decoration-none href="#{user_path(user)}" = user.name
+              .fs-6.text-muted = user.formatted_username
+          .follow-button
+            = f.submit "Follow", class: " btn btn-dark rounded-pill fs-6 fw-bold"
+    .nav-list.p-3
+      = link_to suggested_followers_users_path,
+              class: 'color-brand fs-6'
+        span Show more
+

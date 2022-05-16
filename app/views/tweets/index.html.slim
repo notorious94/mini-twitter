@@ -1,33 +1,38 @@
-- unless user_signed_in?
-  = render 'tweets/sidebar'
 .center-flex-container.flex-item
   .page-title
-    h1 Home
+    div.d-flex.align-items-center
+      i.mdi.mdi-home-circle.fs-2.me-1
+      span.fs-4.nav-text Home
+    - if user_signed_in?
+      = link_to latest_tweets_tweets_path,
+              class: 'fs-2 color-brand me-2'
+        i.mdi.mdi-earth title="Latest"
+
   - if user_signed_in?
     .post-tweet.border-bottom
       = simple_form_for current_user.tweets.new, html: { class: 'form' } do |f|
         .form-group-1
-          = image_tag current_user.displayed_profile_image
+          = image_tag current_user.displayed_profile_image,
+                  class: 'profile-image'
           = f.text_field :post,
                   required: true,
                   autocomplete: 'off',
                   placeholder: "What's happening?",
                   id: 'tweet-box'
-        .form-group-2
-          .post-icons
-            i.mdi.mdi-image
-            span
-              = button_tag type: 'submit', class: 'button btn text-white'
-                span Tweet
-  nav
-    #nav-tab.nav.nav-tabs role="tablist"
-      #nav-home-tab.nav-link.active aria-controls="nav-home" aria-selected="true" data-bs-target="#nav-home" data-bs-toggle="tab" role="tab" type="button"  Home
-      #nav-latest-tab.nav-link aria-controls="nav-latest" aria-selected="false" data-bs-target="#nav-latest" data-bs-toggle="tab" role="tab" type="button"  Latest
-  #nav-tabContent.tab-content
-    #nav-home.tab-pane.fade.show.active aria-labelledby="nav-home-tab" role="tabpanel"
-      = render "tweet_list", tweets: @tweets
-    #nav-latest.tab-pane.fade aria-labelledby="nav-latest-tab" role="tabpanel"
-      = render "tweet_list", tweets: @tweets
+
+        .d-flex.justify-content-between.align-items-center.px-2.py-1
+          .btn.i.mdi.mdi-image.color-brand.ms-2.fs-5#attachment-icon title="Attach Photo"
+            = f.file_field :image,
+                    accept: ".jpeg, .jpg, .png",
+                    class: 'd-none',
+                    id: 'file-field'
+
+          span
+            = button_tag type: 'submit',
+                    class: 'tweet-button'
+              span Tweet
+
+  = render "tweet_list", tweets: @tweets
 
 .right-flex-container.flex-item
-  = render "user_list"
+  = render "users/people_to_follow"
