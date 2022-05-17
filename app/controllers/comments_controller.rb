@@ -2,8 +2,12 @@ class CommentsController < ApplicationController
   before_action :authenticate_user!
 
   def create
-    comment = Comment.create(comment_params)
-    @tweet = comment.tweet
+    comment = Comment.new(comment_params)
+    if comment.save
+      @tweet = comment.tweet
+    else
+      @tweet = Tweet.find(params[:comment][:tweet_id])
+    end
   end
 
   def destroy
@@ -20,6 +24,7 @@ class CommentsController < ApplicationController
   private
 
   def comment_params
+    params[:comment][:body] = params[:comment][:body].strip
     params.require(:comment).permit(
       :body,
       :tweet_id,

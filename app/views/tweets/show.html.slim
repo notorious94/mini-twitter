@@ -2,9 +2,9 @@
   .page-title
     h1 Tweet
   .tweets
-    .user-pics
+    .user-pics.p-2
       = image_tag @tweet.creator.displayed_profile_image,
-              class: 'border border-secondary rounded-image-lg'
+              class: 'border border-secondary rounded-image-lg m-0'
     .brand-black.d-flex.flex-column.w-100
 
       / Creator Details
@@ -13,7 +13,7 @@
         p.user-name = @tweet.creator.formatted_username
         p.time = time_ago_in_words(@tweet.created_at.localtime)
       .user-content
-        p.fs-5 = auto_link(@tweet.post, html: { target: '_blank' })
+        p.fs-5.text-break.m-0.pe-2 = auto_link(@tweet.post, html: { target: '_blank' })
 
   / Reaction Details
   div id="#{@tweet.id}-reactions"

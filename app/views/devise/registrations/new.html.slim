@@ -51,13 +51,6 @@
                 class: 'form-control input-sm form-control-sm'
 
       .form-group.col-12.mb-2
-        label Date of Birth
-        span.req-field.ms-1.text-danger title="required" *
-        = f.date_field :dob,
-                required: true,
-                class: 'form-control input-sm form-control-sm'
-
-      .form-group.col-12.mb-2
         label Gender
         span.req-field.ms-1.text-danger title="required" *
         = f.select :gender,

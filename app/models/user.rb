@@ -29,7 +29,6 @@ class User < ApplicationRecord
   validates_confirmation_of :password
   validates :name, presence: true, length: { maximum: 250 }
   validates :username, presence: true, uniqueness: true, length: { maximum: 250 }
-  validates :dob, presence: true
 
   MALE = 0
   FEMALE = 1

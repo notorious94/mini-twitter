@@ -11,7 +11,6 @@ class ApplicationController < ActionController::Base
         :name,
         :username,
         :email,
-        :dob,
         :gender,
         :profile_image,
         :password,
@@ -37,7 +36,6 @@ class ApplicationController < ActionController::Base
         :gender,
         :location,
         :email,
-        :dob,
         :password,
         :password_confirmation,
         :current_password

@@ -1,11 +1,9 @@
 class RelationshipsController < ApplicationController
   before_action :authenticate_user!
 
-  def index
-  end
-
   def create
-    current_user.active_relationships.create(followed_id: params[:relationship][:followed_id])
+    relationship = current_user.active_relationships.create(followed_id: params[:relationship][:followed_id])
+    @followed = relationship.followed
     @target_user = User.find(params[:target_user_id]) if params[:target_user_id].present?
   end
 

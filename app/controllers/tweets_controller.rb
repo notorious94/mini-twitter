@@ -13,9 +13,6 @@ class TweetsController < ApplicationController
     @tweets = Tweet.where(creator_id: following_user_ids).order(id: :desc)
   end
 
-  def new
-  end
-
   def create
     @tweet = current_user.tweets.new(tweet_params)
     if @tweet.save
@@ -56,8 +53,10 @@ class TweetsController < ApplicationController
   end
 
   def tweet_params
+    params[:tweet][:post] = params[:tweet][:post].strip
     params.require(:tweet).permit(
-      :post
+      :post,
+      :image
     )
   end
 

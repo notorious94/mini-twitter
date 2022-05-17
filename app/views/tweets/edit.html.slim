@@ -1,29 +1,27 @@
 .center-flex-container.flex-item
   .page-title
-    h1 Edit
-  .post-tweet
-    = simple_form_for @tweet, html: { class: 'form' } do |f|
-      .form-group-1
-        = image_tag @tweet.creator.displayed_profile_image,
-                class: 'border border-secondary rounded-image-lg'
-        = f.text_field :post,
+    h1 Edit Thread
+  .pt-2.px-2.border-bottom.border-secondary
+    = simple_form_for current_user.tweets.new, html: { class: 'form' } do |f|
+      .d-flex
+        = image_tag current_user.displayed_profile_image,
+                class: 'rounded-image-xl mt-2 align-self-start'
+        = f.text_area :post,
                 required: true,
                 autocomplete: 'off',
-                placeholder: "What's happening?",
-                id: 'tweet-box'
-      .d-flex.justify-content-between.align-items-center.px-2.py-1
-
-        = f.file_field :image,
-                accept: ".jpeg, .jpg, .png",
-                class: 'chat-input form-control form-control-sm input-sm'
-          i.mdi.mdi-attachment.mdi-rotate-315.mdi-18px.pl-2.pr-2.file-wrapper.cursor-pointer title="Attach Photo"
+                value: @tweet.post,
+                placeholder: "What's happening?"
+      .d-flex.justify-content-between.align-items-center.py-1
+        .btn.i.mdi.mdi-image.color-brand.fs-5.p-0#attachment-icon title="Attach Photo"
+          = f.file_field :image,
+                  accept: ".jpeg, .jpg, .png",
+                  class: 'd-none',
+                  id: 'file-field'
         span
           = button_tag type: 'submit',
                   class: 'tweet-button'
             span Tweet
 
-  .d-flex.flex-column.border-top.border-bottom.bg-light-grey
-    = render "tweets/all_user_comments", tweet: @tweet
 
 .right-flex-container.flex-item
   = render "users/people_to_follow"

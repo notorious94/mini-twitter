@@ -4,7 +4,6 @@ class LikesController < ApplicationController
   def create
     like = Like.create(like_params)
     @tweet = like.tweet
-
   end
 
   def destroy

@@ -1,5 +1,8 @@
 if($("#people-to-follow").length){
     $("#people-to-follow").html("<%= escape_javascript(render('relationships/people_to_follow_list')) %>");
+    if($("<%= '#' + @followed.id.to_s + '-relationship-count' %>").length){
+        $("<%= '#' + @followed.id.to_s + '-relationship-count' %>").html("<%= escape_javascript(render('relationships/relationship_count', user: @followed)) %>");
+    }
 }
 
 if($("#all-people-to-follow").length){
@@ -15,5 +18,5 @@ if((<%= @target_user.present? %>)===true && $("#all-followers").length){
 }
 
 if($("<%= '#'+current_user.id.to_s + '-relationship-count' %>").length){
-    $("<%= '#'+current_user.id.to_s + '-relationship-count' %>").html("<%= escape_javascript(render('relationships/relationship_count')) %>");
+    $("<%= '#'+current_user.id.to_s + '-relationship-count' %>").html("<%= escape_javascript(render('relationships/relationship_count', user: current_user)) %>");
 }

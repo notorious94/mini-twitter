@@ -1,7 +1,7 @@
-= link_to following_list_user_path(current_user),
+= link_to following_list_user_path(user),
         class: 'fs-6 text-muted text-decoration-underline faded-focus me-4'
-  span = humanize_number(current_user.following.count) + ' Following'
+  span = humanize_number(user.following.count) + ' Following'
 
-= link_to followers_list_user_path(current_user),
+= link_to followers_list_user_path(user),
         class: 'fs-6 text-muted text-decoration-underline faded-focus me-4'
-  span = humanize_number(current_user.followers.count) + ' Followers'
+  span = humanize_number(user.followers.count) + ' Followers'

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_05_15_223154) do
+ActiveRecord::Schema.define(version: 2022_05_16_224337) do
 
   create_table "active_storage_attachments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
@@ -75,15 +75,12 @@ ActiveRecord::Schema.define(version: 2022_05_15_223154) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "creator_id"
-    t.integer "total_comments", default: 0
-    t.integer "total_likes", default: 0
   end
 
   create_table "users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", default: "", null: false
     t.string "username", default: "", null: false
     t.string "email", default: "", null: false
-    t.datetime "dob"
     t.integer "gender", default: 0, null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"

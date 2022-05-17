@@ -10,14 +10,28 @@
         .fs-6.fw-bold.text-dark = @user.name
         p.m-0 = @user.formatted_username
 
+
     - if @user.eql?(current_user)
       = link_to edit_user_registration_path,
               class: 'tweet-button text-decoration-none'
         i.mdi.mdi-square-edit-outline.me-1
         span Edit Profile
+    - elsif current_user.is_following(@user)
+      = simple_form_for current_user.active_relationships.find_by(followed_id: @user.id), html: { method: :delete }, remote: true do |f|
+        = f.submit "Unfollow", class: "btn-danger text-white btn rounded-pill fs-6 fw-bold"
+    - else
+      = simple_form_for current_user.active_relationships.new, html: { class: 'form' }, remote: true do |f|
+        = f.hidden_field :followed_id, value: @user.id
+        = f.submit "Follow", class: " btn btn-dark rounded-pill fs-6 fw-bold"
+
 
   .col-12.d-flex.border-bottom-secondary.p-2.flex-column
-    .d-flex.flex-row.align-items-center
+    .d-flex.flex-row.align-items-center.justify-content-center
+
+      .email.me-4
+        i.mdi.mdi-email-outline.text-muted.me-1
+        span.text-muted = @user.email
+
       - if @user.location.present?
         .location.me-4
           i.mdi.mdi-map-marker-outline.text-muted.me-1
@@ -27,7 +41,8 @@
         i.mdi.mdi-calendar-text.text-muted.me-1
         span.text-muted = 'Joined ' + @user.created_at.strftime('%B %Y')
 
-    .d-flex.flex-row.align-items-center.pt-2 id="#{@user.id}-relationship-count"
+
+    .d-flex.flex-row.align-items-center.justify-content-center.pt-2 id="#{@user.id}-relationship-count"
       = link_to following_list_user_path(@user),
               class: 'fs-6 text-muted text-decoration-underline faded-focus me-4'
         span id="#{@user.id}-following-count" = humanize_number(@user.following.count) + ' Following'
