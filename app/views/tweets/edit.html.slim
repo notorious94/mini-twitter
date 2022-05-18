@@ -1,6 +1,9 @@
 .center-flex-container.flex-item
   .page-title
     h1 Edit Thread
+
+  = render "shared/alert", object: @tweet
+
   .pt-2.px-2.border-bottom.border-secondary
     = simple_form_for @tweet, html: { class: 'form' } do |f|
       .d-flex

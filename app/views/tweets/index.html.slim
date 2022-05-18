@@ -8,6 +8,8 @@
               class: 'fs-2 color-brand me-2'
         i.mdi.mdi-earth title="Latest"
 
+  = render "shared/alert", object: @tweet
+
   - if user_signed_in?
     .pt-2.px-2.border-bottom.border-light
       = simple_form_for current_user.tweets.new, html: { class: 'form' } do |f|
