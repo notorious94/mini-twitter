@@ -1,23 +1,27 @@
-- unless user_signed_in?
-  = render 'tweets/sidebar'
 .center-flex-container.flex-item
-  .home
-    h1 Edit
-  .post-tweet
-    = simple_form_for @tweet, html: { class: 'form' } do |f|
-      .form-group-1
-        = image_pack_tag "media/images/profile.png"
-        = f.text_field :post,
+  .page-title
+    h1 Edit Thread
+  .pt-2.px-2.border-bottom.border-secondary
+    = simple_form_for current_user.tweets.new, html: { class: 'form' } do |f|
+      .d-flex
+        = image_tag current_user.displayed_profile_image,
+                class: 'rounded-image-xl mt-2 align-self-start'
+        = f.text_area :post,
                 required: true,
                 autocomplete: 'off',
-                placeholder: "What's happening?",
-                id: 'tweet-box'
-      .form-group-2
-        .post-icons
-          i.mdi.mdi-image
-          span
-            = button_tag type: 'submit', class: 'button btn text-white'
-              span Tweet
+                value: @tweet.post,
+                placeholder: "What's happening?"
+      .d-flex.justify-content-between.align-items-center.py-1
+        .btn.i.mdi.mdi-image.color-brand.fs-5.p-0#attachment-icon title="Attach Photo"
+          = f.file_field :image,
+                  accept: ".jpeg, .jpg, .png",
+                  class: 'd-none',
+                  id: 'file-field'
+        span
+          = button_tag type: 'submit',
+                  class: 'tweet-button'
+            span Tweet
+
 
 .right-flex-container.flex-item
-  = render "user_list"
+  = render "users/people_to_follow"

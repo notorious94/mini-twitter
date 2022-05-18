@@ -1,36 +1,13 @@
-class CommentsController < ActionController::Base
+class CommentsController < ApplicationController
   before_action :authenticate_user!
 
-  def new
-  end
-
   def create
-    Comment.create(comment_params)
-    redirect_back(fallback_location: root_path)
-  end
-
-  def edit
-  end
-
-  def update
-    if @tweet.update(tweet_params)
-      redirect_to tweets_path
+    comment = Comment.new(comment_params)
+    if comment.save
+      @tweet = comment.tweet
+    else
+      @tweet = Tweet.find(params[:comment][:tweet_id])
     end
-  end
-
-  def show
-  end
-
-  def create_tweet_comment
-    tweet = Tweet.find(params[:tweet_id])
-    comment = Comment.new
-    ActiveRecord::Base.transaction do
-      comment = Comment.create(tweet_id: params[:tweet_id],
-                               user_id: params[:user_id],
-                               body: params[:comment])
-      tweet.update_total_comment_count
-    end
-    render json: comment, adapter: nil
   end
 
   def destroy
@@ -46,10 +23,10 @@ class CommentsController < ActionController::Base
 
   private
 
-
   def comment_params
+    params[:comment][:body] = params[:comment][:body].strip
     params.require(:comment).permit(
-      :comment,
+      :body,
       :tweet_id,
       :user_id
     )

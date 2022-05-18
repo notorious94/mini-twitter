@@ -1,64 +1,28 @@
-- unless user_signed_in?
-  = render 'tweets/sidebar'
-.center-flex-container.flex-item#show-page
+.center-flex-container.flex-item
   .page-title
     h1 Tweet
   .tweets
-    .user-pics
+    .user-pics.p-2
       = image_tag @tweet.creator.displayed_profile_image,
-              class: 'border border-secondary rounded-image-lg'
-    .brand-black.d-flex.flex-column
+              class: 'border border-secondary rounded-image-lg m-0'
+    .brand-black.d-flex.flex-column.w-100
 
       / Creator Details
-      .user-names.d-flex.align-items-center
-        p.full-name.color-brand = @tweet.creator.name
-        p.user-name = @tweet.creator.username
+      .user-names.d-flex.align-items-center.justify-content-between.px-2
+        a.full-name.color-brand.align-self-start.faded-focus.text-decoration-none.pt-2 href="#{user_path(@tweet.creator)}" = @tweet.creator.name
+        p.user-name = @tweet.creator.formatted_username
         p.time = time_ago_in_words(@tweet.created_at.localtime)
       .user-content
-        a.text-decoration-none.text-dark href="#{tweet_path(@tweet)}" = @tweet.post
+        p.fs-5.text-break.m-0.pe-2 = auto_link(@tweet.post, html: { target: '_blank' })
 
-      / Reaction Details
-      .d-flex.justify-content-between.align-items-center.content-icons.mb-1
-        div
-          - if current_user.liked(@tweet)
-            i.mdi.mdi-heart.mdi-18px.me-2.like-icon.text-danger data-tweet-id="#{@tweet.id}" data-like-state="true"
-            span.red.like-count = humanize_number(@tweet.total_likes)
-          - else
-            i.mdi.mdi-heart-outline.mdi-18px.me-2.like-icon.text-danger data-tweet-id="#{@tweet.id}" data-like-state="false"
-            span.red.like-count = ''
-        .blue
-          a.mdi.mdi-comment-outline.color-brand.mdi-18px.me-2.text-decoration-none href="##{@tweet.id}-comment"
-          span.blue id="#{@tweet.id}-comment-count" = humanize_number(@tweet.total_comments)
+  / Reaction Details
+  div id="#{@tweet.id}-reactions"
+    = render "tweets/reaction", tweet: @tweet
 
-  / Comment Box
-  .d-flex.flex-column.border-top.border-bottom.p-3.bg-light-grey
-    - if user_signed_in?
-      .d-flex.justify-content-start.align-items-center
-        = image_tag current_user.displayed_profile_image,
-                class: 'rounded-image-sm border border-secondary'
-        .d-flex.flex-column.p-1.w-100.ms-2
-          = simple_form_for Comment.new, html: { class: 'form' } do |f|
-            = f.text_field :body,
-                    autocomplete: 'off',
-                    class: 'px-2 form-control input-sm form-control-sm rounded-pill create-comment',
-                    data: { tweet_id: @tweet.id, user_id: current_user.id },
-                    placeholder: "Write a comment..",
-                    id: "#{@tweet.id}-comment"
-            p.small-text Press Enter to post
-
-    / Comment Section
-    div id="#{@tweet.id}-comment-section"
-      - @tweet.comments.reverse.each do |c|
-        .d-flex.justify-content-start.align-items-center.px-3
-          = image_tag c.author.displayed_profile_image,
-                  class: 'rounded-image-sm border border-secondary'
-          .d-flex.flex-column.w-100.ms-2
-            .d-flex.justify-content-start.align-items-center.lh-1
-              p.small-text.fw-bold.color-brand = c.author.name
-              p.small-text.time = time_ago_in_words(c.created_at.localtime)
-            p.small.text-wrap.lh-1 = c.body
+  .d-flex.flex-column.border-top.border-bottom.bg-light-grey
+    = render "tweets/comment_box", tweet: @tweet
+    div id="#{@tweet.id}-comment-details"
+      = render "tweets/all_user_comments", tweet: @tweet
 
 .right-flex-container.flex-item
-  = render "user_list"
-
-= render "shared/comment_template"
+  = render "users/people_to_follow"

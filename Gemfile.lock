@@ -158,6 +158,8 @@ GEM
       nokogiri (>= 1.6)
     rails-html-sanitizer (1.4.2)
       loofah (~> 2.3)
+    rails_autolink (1.1.6)
+      rails (> 3.1)
     railties (6.1.5.1)
       actionpack (= 6.1.5.1)
       activesupport (= 6.1.5.1)
@@ -202,9 +204,6 @@ GEM
     temple (0.8.2)
     thor (1.2.1)
     tilt (2.0.10)
-    turbolinks (5.2.1)
-      turbolinks-source (~> 5.2)
-    turbolinks-source (5.2.0)
     tzinfo (2.0.4)
       concurrent-ruby (~> 1.0)
     warden (1.2.9)
@@ -247,12 +246,12 @@ DEPENDENCIES
   mysql2 (~> 0.5)
   puma (~> 5.0)
   rails (~> 6.1.5, >= 6.1.5.1)
+  rails_autolink (~> 1.1, >= 1.1.6)
   selenium-webdriver (>= 4.0.0.rc1)
   simple_form
   slim
   slim-rails
   spring
-  turbolinks (~> 5)
   tzinfo-data
   web-console (>= 4.1.0)
   webdrivers

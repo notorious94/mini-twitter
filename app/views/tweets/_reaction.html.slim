@@ -1,0 +1,23 @@
+.d-flex.align-items-center.content-icons.mb-1.px-2.col-12.border-top.border-light
+  .red.col-6.text-center
+    - if user_signed_in?
+      - if current_user.liked(tweet)
+        = simple_form_for Like.find_by(user_id: current_user.id, tweet_id: tweet.id), html: { method: :delete }, remote: true do |f|
+          button.mute-button.i.mdi.mdi-heart.text-danger.me-3.fs-5 type="submit"
+          - if tweet.likes.count.positive?
+            span.red.fs-5 = humanize_number(tweet.likes.count)
+      - else
+        = simple_form_for Like.new, html: { class: 'form' }, remote: true do |f|
+          = f.hidden_field :tweet_id, value: tweet.id
+          = f.hidden_field :user_id, value: current_user.id
+          button.mute-button.i.mdi.mdi-heart-outline.text-danger.me-3.fs-5 type="submit"
+          - if tweet.likes.count.positive?
+            span.red.fs-5 = humanize_number(tweet.likes.count)
+    - else
+      button.mute-button.i.mdi.mdi-heart-outline.text-danger.me-3.fs-5
+      - if tweet.likes.count.positive?
+        span.red.fs-5 = humanize_number(tweet.likes.count)
+  .blue.col-6.text-center
+    i.mdi.mdi-comment-outline.color-brand.me-3.fs-5
+    - if tweet.comments.count.positive?
+      span.blue.fs-5 id="#{tweet.id}-comment-count" = humanize_number(tweet.comments.count)
