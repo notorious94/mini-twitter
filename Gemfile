@@ -32,6 +32,7 @@ gem 'breadcrumbs_on_rails'
 gem 'devise'
 gem 'dotenv-rails'
 gem 'rails_autolink', '~> 1.1', '>= 1.1.6'
+gem 'rubocop-rails', require: false
 gem 'simple_form'
 gem 'slim'
 gem 'slim-rails'

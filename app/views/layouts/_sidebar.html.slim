@@ -4,7 +4,18 @@
     span.fs-2.color-brand.bold-heading Mini Twitter
 
   - if user_signed_in?
-
+    .nav-links
+      ul
+        li.nav-items
+          = link_to root_path,
+                  class: 'text-decoration-none'
+            i.mdi.mdi-home.fs-4
+            span.fs-5 Home
+        li.nav-items
+          = link_to latest_tweets_tweets_path,
+                  class: 'text-decoration-none'
+            i.mdi.mdi-earth.fs-4
+            span.fs-5 Latest
     .profile-box
       = image_tag current_user.displayed_profile_image
       .profile-link
@@ -28,16 +39,3 @@
     .tweet.mt-auto
       a.text-decoration-none.mb-2 href="#{new_user_session_path}" Sign In
       a.text-decoration-none.bg-light.color-brand href="#{new_user_registration_path}" Sign Up
-
-
-/   ToDo: Needed for later use
-/ .nav-links.align-self-start.d-flex.justify-content-start
-/   ul
-/     li.nav-items.mx-auto
-/       a.text-decoration-none  href="#{tweets_path}"
-/         i.mdi.mdi-home.fs-4
-/         span.fs-5 Home
-/     li.nav-items.mx-auto
-/       a.text-decoration-none href="#{tweets_path}"
-/         i.mdi.mdi-earth.fs-4
-/         span.fs-5 Latest
