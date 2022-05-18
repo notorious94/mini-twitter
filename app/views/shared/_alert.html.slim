@@ -3,7 +3,7 @@
     = message
     button.btn-close aria-label="Close" data-bs-dismiss="alert" type="button"
 
-  - if object.errors.any?
+  - if object.present? and object.errors.any?
     ul.mb-4.alert-danger
       - object.errors.full_messages.each do |message|
         li.alert-danger.py-1.px-3 = message

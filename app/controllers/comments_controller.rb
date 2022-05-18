@@ -37,7 +37,7 @@ class CommentsController < ApplicationController
   end
 
   def check_ownership
-    if @comment.creator.eql?(current_user)
+    if @comment.author.eql?(current_user)
       true
     else
       redirect_back fallback_location: root_path,

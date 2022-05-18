@@ -7,3 +7,16 @@
         a.small.fw-bold.color-brand.faded-focus.text-decoration-none href="#{user_path(comment.author)}" = comment.author.name
         p.small-text.time = time_ago_in_words(comment.created_at.localtime)
       p.small.text-wrap.lh-1 = auto_link(comment.body, html: { target: '_blank' })
+    - if comment.author.eql?(current_user)
+      .dropdown.align-self-end
+        .btn aria-expanded="false" id="#{comment.id}-menu" data-bs-toggle="dropdown"
+          i.mdi.mdi-dots-horizontal
+        ul.dropdown-menu aria-labelledby="#{comment.id}-menu"
+          li
+            = link_to comment_path(comment),
+                    method: :delete,
+                    remote: true,
+                    class: 'text-decoration-none dropdown-item'
+
+              span.i.mdi.mdi-delete.me-2.text-danger
+              span Delete
