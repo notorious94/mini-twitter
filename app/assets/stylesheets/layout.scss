@@ -135,7 +135,6 @@ ul {
   flex-flow: row nowrap;
   justify-content: center;
   align-items: center;
-  //margin-top: 1.5rem;
   align-self: center;
   padding: 0 0.6rem;
 }
@@ -170,7 +169,6 @@ ul {
   font-size: 1.1rem;
 }
 
-
 /* Main Container */
 .page-title {
   display: flex;
@@ -192,10 +190,6 @@ ul {
 .nav-text {
   font-size: 1.2rem;
   font-weight: 800;
-  //color: rgba(29, 161, 242, 1.00);
-//  background: #fff;
-//  padding: 0.5rem;
-//  border-radius: 50%
 }
 
 .page-title i:hover {
@@ -204,9 +198,6 @@ ul {
 }
 
 /* Create Tweet box */
-.post-tweet {
-  background: #fff;
-}
 
 .cover_image{
   height: 150px;
@@ -215,12 +206,6 @@ ul {
 
 .faded-focus:hover {
   opacity: 0.8;
-}
-
-.form-group-1 {
-  display: flex;
-  flex-flow: row;
-  padding: 0.3rem 1rem;
 }
 
 .profile-image {
@@ -232,65 +217,9 @@ ul {
   align-self: center;
 }
 
-.post-tweet input {
-  width: 90%;
-  height: 60px;
-  padding: 0.5rem 1rem;
-  border: none;
-  font-size: 1.2rem;
-  font-weight: 300;
-}
-
-.post-tweet input::placeholder {
-  color: rgba(123, 124, 126, 0.719);
-}
-
-.post-tweet input:focus {
-  outline: none;
-}
-
-.form-group-2 {
-  display: flex;
-  flex-flow: row;
-  justify-content: space-between;
-  align-items: center;
-  padding-bottom: 0.8rem;
-}
-
-.post-icons {
-  padding-left: 4rem;
-  color: #1da1f2;
-}
-
-.post-icons i {
-  padding-right: 10px;
-  font-size: 1.4rem;
-}
-
-.post-icons i:hover {
-  color: #1da0f2c2;
-  cursor: pointer;
-}
-
-//.form-group-2 .btn {
-//  border: none;
-//  font-weight: 600;
-//  font-size: 1rem;
-//  padding: 0.7rem 1rem;
-//  background: #1da1f2;
-//  color: #fff;
-//  border-radius: 25px;
-//  margin-right: 1rem;
-//}
-
 button {
   width: auto !important;
 }
-
-//.btn:focus {
-//  outline: none;
-//}
-
 
 /* Right Navbar */
 
@@ -364,14 +293,10 @@ button {
   padding-top: 0.5rem;
 }
 
-
-
 .tweet-content img {
   border-radius: 20px;
 }
-//.tweet-body a{
-//  color: #1D9BF0;
-//}
+
 .tweet-content {
   font-family: "Roboto", serif;
   padding-right: 1rem;
@@ -438,22 +363,21 @@ button {
 }
 
 .content-icons i {
-color: rgba(0, 0, 0, 0.55);
-font-size: 1rem;
-cursor: pointer;
-
+  color: rgba(0, 0, 0, 0.55);
+  font-size: 1rem;
+  cursor: pointer;
 }
 
 .content-icons i:last-child {
-font-size: 14px;
+  font-size: 14px;
 }
 
 .content-icons .red:hover {
-color: rgb(224, 36, 94);
+  color: rgb(224, 36, 94);
 }
 
 .content-icons .blue:hover {
-color: rgba(29, 161, 242, 1.00);
+  color: rgba(29, 161, 242, 1.00);
 }
 
 /* Customization */
