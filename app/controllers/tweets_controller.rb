@@ -1,7 +1,7 @@
 class TweetsController < ApplicationController
   before_action :authenticate_user!, except: %w[index]
   before_action :set_tweet, only: %w[edit update destroy show]
-
+  before_action :check_ownership, only: %w[edit update destroy]
   include ActionView::Helpers::NumberHelper
 
   def index
@@ -18,28 +18,22 @@ class TweetsController < ApplicationController
     if @tweet.save
       redirect_to tweets_path
     else
-      flash[:alert] = "Please review the following problems"
+      flash[:alert] = 'Please review the following problems'
       render :edit
     end
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
-    if @tweet.update(tweet_params)
-      redirect_to tweet_path(@tweet)
-    end
+    redirect_to tweet_path(@tweet) if @tweet.update(tweet_params)
   end
 
-  def show
-  end
+  def show; end
 
   def destroy
     begin
-      if @tweet.destroy
-        redirect_to tweets_path
-      end
+      redirect_to tweets_path if @tweet.destroy
     rescue StandardError => e
       redirect_to fallback_location: root_path,
                   flash: { error: 'Operation could not be completed.' }
@@ -58,6 +52,15 @@ class TweetsController < ApplicationController
       :post,
       :image
     )
+  end
+
+  def check_ownership
+    if @tweet.creator.eql?(current_user)
+      true
+    else
+      redirect_back fallback_location: root_path,
+                    flash: { error: 'You are not eligible to make the changes.' }
+    end
   end
 
 end
