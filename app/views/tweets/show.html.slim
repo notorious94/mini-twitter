@@ -1,6 +1,6 @@
 .center-flex-container.flex-item
   .page-title
-    h1 Tweet
+    h1 Thread
   .tweets
     .user-pics.p-2
       = image_tag @tweet.creator.displayed_profile_image,
@@ -12,6 +12,22 @@
         a.full-name.color-brand.align-self-start.faded-focus.text-decoration-none.pt-2 href="#{user_path(@tweet.creator)}" = @tweet.creator.name
         p.user-name = @tweet.creator.formatted_username
         p.time = time_ago_in_words(@tweet.created_at.localtime)
+        - if @tweet.creator.eql?(current_user)
+          .dropdown.align-self-end
+            #tweet-menu.btn aria-expanded="false" data-bs-toggle="dropdown"
+              i.mdi.mdi-dots-vertical
+            ul.dropdown-menu aria-labelledby="tweet-menu"
+              li
+                = link_to edit_tweet_path(@tweet),
+                        class: 'text-decoration-none dropdown-item'
+                  span.i.mdi.mdi-square-edit-outline.me-2
+                  span Edit tweet
+              li
+                = link_to tweet_path(@tweet),
+                        method: :delete,
+                        class: 'text-decoration-none dropdown-item border-top border-secondary'
+                  span.i.mdi.mdi-delete.me-2.text-danger
+                  span.text-danger Delete
       .user-content
         p.fs-5.text-break.m-0.pe-2 = auto_link(@tweet.post, html: { target: '_blank' })
         - if @tweet.image.attached?
