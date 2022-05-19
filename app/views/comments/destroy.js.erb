@@ -1,0 +1,11 @@
+if($("<%= '#'+@tweet.id.to_s + '-comment-section' %>").length){
+    $("<%= '#'+@tweet.id.to_s + '-comment-section' %>").html("<%= escape_javascript(render('tweets/user_comments', tweet: @tweet)) %>");
+}
+
+if($("<%= '#'+@tweet.id.to_s + '-reactions' %>").length){
+    $("<%= '#'+@tweet.id.to_s + '-reactions' %>").html("<%= escape_javascript(render('tweets/reaction', tweet: @tweet)) %>");
+}
+
+if($("<%= '#'+@tweet.id.to_s + '-comment-details' %>").length){
+    $("<%= '#'+@tweet.id.to_s + '-comment-details' %>").html("<%= escape_javascript(render('tweets/all_user_comments', tweet: @tweet)) %>");
+}

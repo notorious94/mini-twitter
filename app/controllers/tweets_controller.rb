@@ -6,6 +6,7 @@ class TweetsController < ApplicationController
 
   def index
     @tweets = Tweet.all.order(id: :desc)
+    @tweet = current_user.tweets.new if current_user
   end
 
   def latest_tweets
@@ -16,17 +17,25 @@ class TweetsController < ApplicationController
   def create
     @tweet = current_user.tweets.new(tweet_params)
     if @tweet.save
+      flash[:success] = 'Tweet posted successfully.'
       redirect_to tweets_path
     else
-      flash[:alert] = 'Please review the following problems'
-      render :edit
+      @tweets = Tweet.all.order(id: :desc)
+      flash[:alert] = 'Operation could not be completed.'
+      render :index
     end
   end
 
   def edit; end
 
   def update
-    redirect_to tweet_path(@tweet) if @tweet.update(tweet_params)
+    if @tweet.update(tweet_params)
+      flash[:success] = 'Tweet updated successfully.'
+      redirect_to tweets_path
+    else
+      flash[:alert] = 'Please review the following problems'
+      render :edit
+    end
   end
 
   def show; end

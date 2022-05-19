@@ -24,9 +24,9 @@ class CommentsController < ApplicationController
   private
 
   def comment_params
-    params[:comment][:body] = params[:comment][:body].strip
     params.require(:comment).permit(
       :body,
+      :image,
       :tweet_id,
       :user_id
     )
@@ -37,7 +37,7 @@ class CommentsController < ApplicationController
   end
 
   def check_ownership
-    if @comment.creator.eql?(current_user)
+    if @comment.author.eql?(current_user)
       true
     else
       redirect_back fallback_location: root_path,

@@ -4,9 +4,9 @@ class User < ApplicationRecord
   has_many :liked_tweets, through: :likes, source: :tweet
   has_many :comments, dependent: :destroy
   has_many :commented_tweets, through: :likes, source: :tweet
-  has_many :active_relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
+  has_many :active_relationships, class_name: 'Relationship', foreign_key: 'follower_id', dependent: :destroy
   has_many :following, through: :active_relationships, source: :followed
-  has_many :passive_relationships, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
+  has_many :passive_relationships, class_name: 'Relationship', foreign_key: 'followed_id', dependent: :destroy
   has_many :followers, through: :passive_relationships, source: :follower
 
   has_one_attached :profile_image
@@ -20,6 +20,12 @@ class User < ApplicationRecord
             content_type: %w[image/jpg image/jpeg image/png],
             size: { less_than: 4.megabytes,
                     message: 'upload limit is 4 MB' }
+
+  validates :cover_photo,
+            content_type: %w[image/jpg image/jpeg image/png],
+            size: { less_than: 4.megabytes,
+                    message: 'upload limit is 4 MB' }
+
   validates :email,
             presence: true,
             uniqueness: true,

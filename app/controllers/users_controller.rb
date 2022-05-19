@@ -8,7 +8,9 @@ class UsersController < ApplicationController
 
   def followers_list; end
 
-  def show; end
+  def show
+    @own_tweets = @user.tweets.reverse
+  end
 
   private
 

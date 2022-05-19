@@ -12,7 +12,7 @@ require("@popperjs/core")
 require("@rails/activestorage").start()
 
 // Custom JS Files
-
+require("../src/global_configuration")
 require("../src/tweets")
 require("../src/user_session")
 require("../src/comments")

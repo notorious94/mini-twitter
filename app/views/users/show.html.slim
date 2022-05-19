@@ -23,7 +23,7 @@
 
   div
     h5.text-center.color-brand = humanize_number(@user.tweets.count) + ' Tweets'
-    = render "tweets/tweet_list", tweets: @user.tweets
+    = render "tweets/tweet_list", tweets: @own_tweets
 
 .right-flex-container.flex-item
   = render "users/people_to_follow"
