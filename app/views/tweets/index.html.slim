@@ -3,16 +3,18 @@
     div.d-flex.align-items-center
       i.mdi.mdi-home-circle.fs-2.me-1
       span.fs-4.nav-text Home
+
     - if user_signed_in?
       = link_to latest_tweets_tweets_path,
               class: 'fs-2 color-brand me-2'
         i.mdi.mdi-earth title="Latest"
 
-  = render "shared/alert", object: @tweet
-
   - if user_signed_in?
+
+    = render "shared/alert", object: @tweet
+
     .pt-2.px-2.border-bottom.border-light
-      = simple_form_for current_user.tweets.new, html: { class: 'form' } do |f|
+      = simple_form_for @tweet, html: { class: 'form' } do |f|
         .d-flex
           = image_tag current_user.displayed_profile_image,
                   class: 'rounded-image-xl mt-2 align-self-start'

@@ -24,7 +24,6 @@ class CommentsController < ApplicationController
   private
 
   def comment_params
-    params[:comment][:body] = params[:comment][:body].strip
     params.require(:comment).permit(
       :body,
       :tweet_id,

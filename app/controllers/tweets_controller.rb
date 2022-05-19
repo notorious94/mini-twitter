@@ -6,6 +6,7 @@ class TweetsController < ApplicationController
 
   def index
     @tweets = Tweet.all.order(id: :desc)
+    @tweet = current_user.tweets.new if current_user
   end
 
   def latest_tweets
@@ -16,7 +17,7 @@ class TweetsController < ApplicationController
   def create
     @tweet = current_user.tweets.new(tweet_params)
     if @tweet.save
-      flash[:success] = 'Tweet posted successfully'
+      flash[:success] = 'Tweet posted successfully.'
       redirect_to tweets_path
     else
       @tweets = Tweet.all.order(id: :desc)
