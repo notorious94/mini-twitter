@@ -6,7 +6,7 @@ class Tweet < ApplicationRecord
   has_many :user_comments, through: :likes, source: :user
   has_one_attached :image
 
-  validates :post, presence: true, allow_blank: false
+  validates :post, presence: true, allow_blank: false, length: { maximum: 280 }
   validates :image,
             content_type: %w[image/jpg image/jpeg image/png],
             size: { less_than: 4.megabytes,

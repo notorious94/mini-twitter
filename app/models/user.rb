@@ -20,6 +20,12 @@ class User < ApplicationRecord
             content_type: %w[image/jpg image/jpeg image/png],
             size: { less_than: 4.megabytes,
                     message: 'upload limit is 4 MB' }
+
+  validates :cover_photo,
+            content_type: %w[image/jpg image/jpeg image/png],
+            size: { less_than: 4.megabytes,
+                    message: 'upload limit is 4 MB' }
+
   validates :email,
             presence: true,
             uniqueness: true,

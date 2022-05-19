@@ -4,7 +4,7 @@ class Comment < ApplicationRecord
   has_one_attached :image
 
   validates :tweet_id, :user_id, presence: true
-  validates :body, presence: true, allow_blank: false
+  validates :body, presence: true, allow_blank: false, length: { maximum: 280 }
   validates :image,
             content_type: %w[image/jpg image/jpeg image/png],
             size: { less_than: 4.megabytes,
