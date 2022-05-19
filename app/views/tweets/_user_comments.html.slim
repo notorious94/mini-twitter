@@ -12,7 +12,7 @@
                 class: 'tweet-image-display'
 
     - if comment.author.eql?(current_user)
-      .dropdown.align-self-end
+      .dropdown.align-self-start
         .btn aria-expanded="false" id="#{comment.id}-menu" data-bs-toggle="dropdown"
           i.mdi.mdi-dots-horizontal
         ul.dropdown-menu aria-labelledby="#{comment.id}-menu"
