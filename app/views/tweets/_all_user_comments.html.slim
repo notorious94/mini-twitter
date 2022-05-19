@@ -1,12 +1,16 @@
 - tweet.comments.reverse.each do |comment|
   .d-flex.justify-content-start.align-items-center.px-3
     = image_tag comment.author.displayed_profile_image,
-            class: 'rounded-image-sm border border-secondary'
+            class: 'rounded-image-sm border border-secondary align-self-start mt-2'
     .d-flex.flex-column.w-100.ms-2
       .d-flex.justify-content-start.align-items-center.lh-1
         a.small.fw-bold.color-brand.faded-focus.text-decoration-none href="#{user_path(comment.author)}" = comment.author.name
         p.small-text.time = time_ago_in_words(comment.created_at.localtime)
       p.small.text-wrap.lh-1 = auto_link(comment.body, html: { target: '_blank' })
+      - if comment.image.attached?
+        = image_tag comment.image,
+                class: 'tweet-image-display'
+
     - if comment.author.eql?(current_user)
       .dropdown.align-self-end
         .btn aria-expanded="false" id="#{comment.id}-menu" data-bs-toggle="dropdown"

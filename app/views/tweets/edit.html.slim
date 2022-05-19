@@ -7,7 +7,7 @@
   .pt-2.px-2.border-bottom.border-secondary
     = simple_form_for @tweet, html: { class: 'form' } do |f|
       .d-flex
-        = image_tag current_user.displayed_profile_image,
+        = image_tag @tweet.creator.displayed_profile_image,
                 class: 'rounded-image-xl mt-2 align-self-start'
         = f.text_area :post,
                 required: true,

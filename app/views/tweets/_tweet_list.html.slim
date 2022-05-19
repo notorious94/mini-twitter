@@ -46,6 +46,7 @@
     = render "tweets/reaction", tweet: tweet
 
   .d-flex.flex-column.border-top.border-bottom.bg-light-grey
+
     = render "tweets/comment_box", tweet: tweet
     div id="#{tweet.id}-comment-section"
       = render "tweets/user_comments", tweet: tweet
