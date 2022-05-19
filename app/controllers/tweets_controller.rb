@@ -30,7 +30,8 @@ class TweetsController < ApplicationController
 
   def update
     if @tweet.update(tweet_params)
-      redirect_to tweet_path(@tweet)
+      flash[:success] = 'Tweet updated successfully.'
+      redirect_to tweets_path
     else
       flash[:alert] = 'Please review the following problems'
       render :edit

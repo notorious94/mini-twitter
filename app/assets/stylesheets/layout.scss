@@ -10,7 +10,6 @@ body {
   line-height: 1.6;
 }
 
-img:hover,
 .full-name:hover,
 .user-name:hover {
   cursor: pointer;
@@ -272,12 +271,8 @@ button {
 }
 
 /* User Content */
-.tweets img {
-  display: block;
-  width: 100%;
-}
 
-.tweets .user-pics img {
+.tweets .user-pics {
   display: block;
   width: 50px;
   height: 50px;
@@ -291,10 +286,6 @@ button {
   font-size: 15px;
   line-height: 1.75rem;
   padding-top: 0.5rem;
-}
-
-.tweet-content img {
-  border-radius: 20px;
 }
 
 .tweet-content {
@@ -435,4 +426,18 @@ textarea:focus {
 textarea::placeholder {
   color: rgba(123, 124, 126, 0.719);
   font-size: 1.2rem;
+}
+
+.tweet-image-display {
+  margin-top: 5px;
+  width: 35vw;
+  border-radius: 20px;
+}
+
+.tweet-image {
+  border-radius: 20px;
+  height: 100%;
+  object-fit: cover;
+  margin-left: 60px;
+  width: 40vw;
 }

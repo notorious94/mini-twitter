@@ -13,17 +13,23 @@
                 required: true,
                 autocomplete: 'off',
                 placeholder: "What's happening?"
+
+      - if @tweet.image.attached?
+        = image_tag @tweet.image,
+                class: 'tweet-image'
+      - else
+        img.tweet-image.d-none src=''
+
       .d-flex.justify-content-between.align-items-center.py-1
         .btn.i.mdi.mdi-image.color-brand.fs-5.p-0#attachment-icon title="Attach Photo"
-          = f.file_field :image,
-                  accept: ".jpeg, .jpg, .png",
-                  class: 'd-none',
-                  id: 'file-field'
+        = f.file_field :image,
+                accept: ".jpeg, .jpg, .png",
+                class: 'd-none',
+                id: 'tweet-file-field'
         span
           = button_tag type: 'submit',
                   class: 'tweet-button'
             span Tweet
-
 
 .right-flex-container.flex-item
   = render "users/people_to_follow"
