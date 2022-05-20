@@ -41,3 +41,6 @@ Tweet.last.image.attach(io: File.open('app/assets/images/bill_gates_tweet_1.jpeg
 User.find_by_email('user-2@gmail.com').tweets.create(post: "In the past I voted Democrat, because they were (mostly) the kindness party.\nBut they have become the party of division & hate, so I can no longer support them and will vote Republican.\nNow, watch their dirty tricks campaign against me unfold …")
 User.find_by_email('user-2@gmail.com').tweets.create(post: 'To be clear, I’m spending <5% (but actually) of my time on the Twitter acquisition. It ain’t rocket science! Yesterday was Giga Texas, today is Starbase. Tesla is on my mind 24/7. So may seem like below, but not true.')
 User.find_by_email('user-2@gmail.com').tweets.create(post: 'Next up! Uber https://www.uber.com/bd/en/')
+Tweet.last.image.attach(io: File.open('app/assets/images/elon_tweet.jpeg'),
+                        filename: 'elon_tweet.jpeg',
+                        content_type: 'image/jpeg')
