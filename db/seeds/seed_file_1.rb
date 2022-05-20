@@ -1,5 +1,5 @@
 names = [
-  'Istiad Hossain',
+  'Admin User',
   'Elon Musk',
   'Bill Gates',
   'Sundar Pichai',
@@ -12,7 +12,7 @@ names = [
 ]
 
 names.each_with_index do |name, _i|
-  user_email = "user-#{_i + 1}@gmail.com"
+  user_email = "user-#{_i + 1}@twitter.com"
 
   user = User.find_or_initialize_by(email: user_email)
   next if user.persisted?
@@ -24,7 +24,7 @@ names.each_with_index do |name, _i|
   user.gender = User::MALE
   user.save
 
-  next if name.eql?('Istiad Hossain')
+  next if name.eql?('Admin User')
 
   puts user.name
   profile_image_file_name = "#{user.name.downcase.split(' ').join('_')}_profile.jpg"

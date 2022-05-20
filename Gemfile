@@ -28,7 +28,6 @@ gem 'image_processing', '~> 1.2'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'active_storage_validations'
 gem 'bootsnap', '>= 1.4.4', require: false
-gem 'breadcrumbs_on_rails'
 gem 'devise'
 gem 'dotenv-rails'
 gem 'rails_autolink', '~> 1.1', '>= 1.1.6'
