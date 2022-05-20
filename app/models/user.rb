@@ -47,19 +47,19 @@ class User < ApplicationRecord
   }
 
   def liked(tweet)
-    Like.find_by_user_id_and_tweet_id(self.id, tweet.id).present?
+    Like.find_by_user_id_and_tweet_id(id, tweet.id).present?
   end
 
   def is_following(user)
-    self.active_relationships.find_by(followed_id: user.id).present?
+    active_relationships.find_by(followed_id: user.id).present?
   end
 
   def has_follower(user)
-    self.passive_relationships.find_by(follower_id: user.id).present?
+    passive_relationships.find_by(follower_id: user.id).present?
   end
 
   def formatted_username
-    '@' + username
+    "@#{username}"
   end
 
   def get_profile_image_path
@@ -91,7 +91,7 @@ class User < ApplicationRecord
   end
 
   def suggested_followers
-    User.where.not(id: [self.id] + self.following.pluck(:id))
+    User.where.not(id: [id] + following.pluck(:id))
   end
 
 end

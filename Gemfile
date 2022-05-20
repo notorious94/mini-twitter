@@ -31,6 +31,7 @@ gem 'bootsnap', '>= 1.4.4', require: false
 gem 'breadcrumbs_on_rails'
 gem 'devise'
 gem 'dotenv-rails'
+gem 'literate_randomizer'
 gem 'rails_autolink', '~> 1.1', '>= 1.1.6'
 gem 'rubocop-rails', require: false
 gem 'simple_form'
