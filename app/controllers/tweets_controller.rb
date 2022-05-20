@@ -1,0 +1,75 @@
+class TweetsController < ApplicationController
+  before_action :authenticate_user!, except: %w[index]
+  before_action :set_tweet, only: %w[edit update destroy show]
+  before_action :check_ownership, only: %w[edit update destroy]
+  include ActionView::Helpers::NumberHelper
+
+  def index
+    @tweets = Tweet.all.order(id: :desc)
+    @tweet = current_user.tweets.new if current_user
+  end
+
+  def latest_tweets
+    following_user_ids = current_user.following.pluck(:id)
+    @tweets = Tweet.where(creator_id: following_user_ids).order(id: :desc)
+  end
+
+  def create
+    @tweet = current_user.tweets.new(tweet_params)
+    if @tweet.save
+      flash[:success] = 'Tweet posted successfully.'
+      redirect_to tweets_path
+    else
+      @tweets = Tweet.all.order(id: :desc)
+      flash[:alert] = 'Operation could not be completed.'
+      render :index
+    end
+  end
+
+  def edit; end
+
+  def update
+    if @tweet.update(tweet_params)
+      flash[:success] = 'Tweet updated successfully.'
+      redirect_to tweets_path
+    else
+      flash[:alert] = 'Please review the following problems'
+      render :edit
+    end
+  end
+
+  def show; end
+
+  def destroy
+    begin
+      redirect_to tweets_path if @tweet.destroy
+    rescue StandardError => e
+      redirect_to fallback_location: root_path,
+                  flash: { error: 'Operation could not be completed.' }
+    end
+  end
+
+  private
+
+  def set_tweet
+    @tweet = Tweet.find(params[:id])
+  end
+
+  def tweet_params
+    params[:tweet][:post] = params[:tweet][:post].strip
+    params.require(:tweet).permit(
+      :post,
+      :image
+    )
+  end
+
+  def check_ownership
+    if @tweet.creator.eql?(current_user)
+      true
+    else
+      redirect_back fallback_location: root_path,
+                    flash: { error: 'You are not eligible to make the changes.' }
+    end
+  end
+
+end

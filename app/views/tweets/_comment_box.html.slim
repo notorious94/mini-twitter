@@ -1,0 +1,29 @@
+
+- if user_signed_in?
+  .d-flex.justify-content-start.align-items-center.px-3.pb-1.pt-2
+    = image_tag current_user.displayed_profile_image,
+            class: 'rounded-image-sm border border-secondary align-self-start mt-2'
+    .d-flex.flex-column.p-1.w-100.ms-2
+      = simple_form_for Comment.new, html: { class: 'form' }, remote: true do |f|
+        = f.hidden_field :tweet_id, value: tweet.id
+        = f.hidden_field :user_id, value: current_user.id
+        = f.file_field :image,
+                accept: ".jpeg, .jpg, .png",
+                class: 'd-none comment-file-input',
+                id: "#{tweet.id}-comment-file-input"
+
+        .d-flex.justify-content-center.align-items-center
+          = f.text_field :body,
+                  autocomplete: 'off',
+                  class: 'px-2 form-control input-sm form-control-sm rounded-pill create-comment',
+                  data: { tweet_id: tweet.id, user_id: current_user.id },
+                  placeholder: "Write a comment..",
+                  id: "#{tweet.id}"
+
+          .btn.i.mdi.mdi-image.color-brand.ps-1.p-0.comment-attachment title="Attach Photo" data-tweet-id="#{tweet.id}"
+
+        p.small-text Press Enter to post
+        img.d-none.tweet-image-display id="#{tweet.id}-comment-file-display" src=''
+        = button_tag type: 'submit',
+                id: "#{tweet.id}-submit-comment",
+                class: 'd-none'

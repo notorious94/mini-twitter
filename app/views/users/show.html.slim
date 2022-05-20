@@ -1,0 +1,29 @@
+.center-flex-container.flex-item
+  = image_tag @user.display_cover_photo_path,
+          class: 'col-12 cover_image'
+
+  div id="#{@user.id}-profile-status"
+    = render "relationships/relationship_status", user: @user
+
+  .col-12.d-flex.border-bottom-secondary.p-2.flex-column
+    .d-flex.flex-row.align-items-center.justify-content-center
+
+      .email.me-4
+        i.mdi.mdi-email-outline.text-muted.me-1
+        span.text-muted = @user.email
+
+      - if @user.location.present?
+        .location.me-4
+          i.mdi.mdi-map-marker-outline.text-muted.me-1
+          span.text-muted = @user.location
+
+      .joined
+        i.mdi.mdi-calendar-text.text-muted.me-1
+        span.text-muted = 'Joined ' + @user.created_at.strftime('%B %Y')
+
+  div
+    h5.text-center.color-brand = humanize_number(@user.tweets.count) + ' Tweets'
+    = render "tweets/tweet_list", tweets: @own_tweets
+
+.right-flex-container.flex-item
+  = render "users/people_to_follow"

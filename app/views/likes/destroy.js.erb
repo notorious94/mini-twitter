@@ -1,0 +1,3 @@
+if($("<%= '#'+@tweet.id.to_s + '-reactions' %>").length){
+    $("<%= '#'+@tweet.id.to_s + '-reactions' %>").html("<%= escape_javascript(render('tweets/reaction', tweet: @tweet)) %>");
+}

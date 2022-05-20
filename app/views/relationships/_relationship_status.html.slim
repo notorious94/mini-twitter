@@ -1,0 +1,32 @@
+.col-12.d-flex.flex-row.p-2.align-items-center.justify-content-between.border-bottom.border-light
+  .d-flex.flex-row.align-items-center
+    = image_tag user.displayed_profile_image,
+            class: 'rounded-image-xl'
+    .ms-2
+      .fs-6.fw-bold.text-dark = user.name
+      p.m-0 = user.formatted_username
+
+  .d-flex.flex-row.align-items-center.justify-content-between.pt-2 id="#{user.id}-relationship-count"
+    = link_to following_list_user_path(user),
+            class: 'fs-6 text-muted text-decoration-underline faded-focus me-4'
+      span id="#{user.id}-following-count" = humanize_number(user.following.count) + ' Following'
+
+    = link_to followers_list_user_path(user),
+            class: 'fs-6 text-muted text-decoration-underline faded-focus me-4'
+      span = humanize_number(user.followers.count) + ' Followers'
+
+  - if user.eql?(current_user)
+    = link_to edit_user_registration_path,
+            class: 'tweet-button text-decoration-none'
+      i.mdi.mdi-square-edit-outline.me-1
+      span Edit Profile
+  - elsif current_user.is_following(user)
+    = link_to unfollow_user_relationships_path(followed_id: user.id),
+            method: :post,
+            class: "btn-danger text-white btn rounded-pill fs-6 fw-bold"
+      span Unfollow
+  - else
+    = link_to follow_user_relationships_path(followed_id: user.id),
+            method: :post,
+            class: " btn btn-dark rounded-pill fs-6 fw-bold"
+      span Follow

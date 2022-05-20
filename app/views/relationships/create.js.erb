@@ -1,0 +1,21 @@
+if($("#people-to-follow").length){
+    $("#people-to-follow").html("<%= escape_javascript(render('relationships/people_to_follow_list')) %>");
+    if($("<%= '#' + @followed.id.to_s + '-profile-status' %>").length){
+        $("<%= '#' + @followed.id.to_s + '-profile-status' %>").html("<%= escape_javascript(render('relationships/relationship_status', user: @followed)) %>");
+    }
+    if($("<%= '#'+current_user.id.to_s + '-profile-status' %>").length){
+        $("<%= '#'+current_user.id.to_s + '-profile-status' %>").html("<%= escape_javascript(render('relationships/relationship_status', user: current_user)) %>");
+    }
+}
+
+if($("#all-people-to-follow").length){
+    $("#all-people-to-follow").html("<%= escape_javascript(render('relationships/all_people_to_follow')) %>");
+}
+
+if((<%= @target_user.present? %>)===true && $("#all-followings").length){
+    $("#all-followings").html("<%= escape_javascript(render('relationships/following_list')) %>");
+}
+
+if((<%= @target_user.present? %>)===true && $("#all-followers").length){
+    $("#all-followers").html("<%= escape_javascript(render('relationships/followers_list')) %>");
+}

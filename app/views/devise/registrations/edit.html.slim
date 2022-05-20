@@ -1,0 +1,108 @@
+.center-flex-container.flex-item
+
+  = image_tag @user.display_cover_photo_path,
+          class: 'col-12 cover_image'
+
+  .col-12.d-flex.flex-row.p-2.align-items-center.justify-content-between
+    .d-flex.flex-row.align-items-center
+      = image_tag @user.displayed_profile_image,
+              class: 'rounded-image-xl'
+      .ms-2
+        .fs-6.fw-bold.text-dark = @user.name
+        p.m-0 = @user.formatted_username
+
+  = simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
+
+    .text-center.text-danger.h6 = f.error_notification
+    - if resource.errors.full_messages.present?
+      ul.mb-4.py-2.alert-danger
+        - resource.errors.full_messages.each do |message|
+          li.alert-danger.py-1.px-3.small = message
+
+    .p-2.bg-light
+      h4.mdi.mdi-image-filter.color-brand.m-2 = " General"
+      .form-group.col-12.mb-3
+        label Profile Picture
+        = f.file_field :profile_image,
+                accept: ".jpeg, .jpg, .png",
+                class: 'form-control input-sm form-control-sm'
+
+      .form-group.col-12.mb-3
+        label Cover Picture
+        = f.file_field :cover_photo,
+                accept: ".jpeg, .jpg, .png",
+                class: 'form-control input-sm form-control-sm'
+
+      h4.mdi.mdi-account-circle.color-brand.m-2 = " Personal"
+      .form-group.col-12.mb-3
+        label Name
+        span.req-field.ms-1.text-danger title="required" *
+        = f.text_field :name,
+                required: true,
+                placeholder: 'Your Name',
+                class: 'form-control input-sm form-control-sm'
+
+      .form-group.col-12.mb-3
+        label Username
+        span.req-field.ms-1.text-danger title="required" *
+        = f.text_field :username,
+                required: true,
+                placeholder: 'Your Username',
+                class: 'form-control input-sm form-control-sm'
+
+      .form-group.col-12.mb-3
+        label Gender
+        span.req-field.ms-1.text-danger title="required" *
+        = f.select :gender,
+                User.genders.keys.to_a, { prompt: 'Select one' },
+                required: true,
+                class: 'form-control input-sm form-control-sm'
+
+      .form-group.col-12.mb-3
+        label Location
+        = f.text_field :location,
+                placeholder: 'Location',
+                class: 'form-control input-sm form-control-sm'
+
+      .form-group.col-12.mb-3
+        label Email
+        span.req-field.ms-1.text-danger title="required" *
+        = f.email_field :email,
+                required: true,
+                class: 'form-control input-sm form-control-sm'
+
+      h4.mdi.mdi-security.color-brand.m-2 = " Security"
+
+      .form-group.col-12.mb-3
+        label New Password
+        span.color-brand.small.ms-1 = "( #{@minimum_password_length} characters minimum )" if @minimum_password_length
+        = f.password_field :password,
+                class: 'form-control input-sm form-control-sm'
+        span.text-primary.small.mdi.mdi-information
+        span.text-dark.small.ms-1 Leave empty if you do not want to change!
+
+      .form-group.col-12.mb-3
+        label Retype Password
+        = f.password_field :password_confirmation,
+                class: 'form-control input-sm form-control-sm'
+
+      .form-group.col-12.mb-3
+        label Current Password
+        = f.password_field :current_password,
+                class: 'form-control input-sm form-control-sm'
+        span.text-primary.small.mdi.mdi-information
+        span.text-dark.small.ms-1 You have to enter current password to save changes
+
+      .d-flex.justify-content-center.mt-3
+        = button_tag type: 'submit',
+                class: 'button btn btn-success btn-sm me-2 text-white color-brand btn-pill'
+          i.mdi.mdi-content-save-edit-outline.mt-0.me-1 role="status"
+          span Update
+
+        = link_to user_path(@user),
+                class: 'button btn btn-sm text-white btn-secondary btn-pill'
+          i.mdi.mdi-close-circle-outline.mt-0.me-1 role="status"
+          span Discard
+
+.right-flex-container.flex-item
+  = render "users/people_to_follow"

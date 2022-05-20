@@ -6,7 +6,10 @@
 
 # Ignore bundler config.
 /.bundle
-
+.env
+# ignore JetBrains IDE stuff
+.idea
+.generators
 # Ignore the default SQLite database.
 /db/*.sqlite3
 /db/*.sqlite3-*
