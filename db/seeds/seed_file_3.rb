@@ -1,13 +1,13 @@
-istiad_id = User.find_by_email('user-1@gmail.com').id
-elon_musk_id = User.find_by_email('user-2@gmail.com').id
-bill_gates_id = User.find_by_email('user-3@gmail.com').id
-sundars_id = User.find_by_email('user-4@gmail.com').id
-lisa_su_id = User.find_by_email('user-5@gmail.com').id
-huangs_id = User.find_by_email('user-6@gmail.com').id
-nadella_id = User.find_by_email('user-7@gmail.com').id
-zuckerberg_id = User.find_by_email('user-8@gmail.com').id
-snowden_id = User.find_by_email('user-9@gmail.com').id
-pavel_id = User.find_by_email('user-10@gmail.com').id
+istiad_id = User.find_by_email('user-1@twitter.com').id
+elon_musk_id = User.find_by_email('user-2@twitter.com').id
+bill_gates_id = User.find_by_email('user-3@twitter.com').id
+sundars_id = User.find_by_email('user-4@twitter.com').id
+lisa_su_id = User.find_by_email('user-5@twitter.com').id
+huangs_id = User.find_by_email('user-6@twitter.com').id
+nadella_id = User.find_by_email('user-7@twitter.com').id
+zuckerberg_id = User.find_by_email('user-8@twitter.com').id
+snowden_id = User.find_by_email('user-9@twitter.com').id
+pavel_id = User.find_by_email('user-10@twitter.com').id
 
 # Elon musk follows -> Lisa Su, Bill Gates, Mark Zuckerberg
 Relationship.find_or_create_by(follower_id: elon_musk_id, followed_id: bill_gates_id)
